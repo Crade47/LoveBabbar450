@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -43,12 +43,12 @@ return 0;
 
 void Solution :: alternateArray(vector<int> &arr){
 
-    int outOfPlace, nextElement;
-    int k;
+    int outOfPlace, nextElement = 0;
+    int k = 0;
 
     for (int i = 0; i < arr.size(); i++)
     {
-        if(i%2 == 0 and arr[i] >= 0)
+        if((i%2 == 0) && (arr[i] >= 0))
         {
             outOfPlace = i;
             k = outOfPlace;
@@ -61,11 +61,12 @@ void Solution :: alternateArray(vector<int> &arr){
                 }
                 k++;
             }
-            rightRotate(arr, outOfPlace, nextElement);
+            if(k >= arr.size()) break;
+            else rightRotate(arr, outOfPlace, nextElement);
             
         }
 
-        if(i%2 > 0 and arr[i] < 0)
+        if((i%2 > 0) && (arr[i] < 0))
         {
             outOfPlace = i;
             k = outOfPlace;
@@ -78,7 +79,8 @@ void Solution :: alternateArray(vector<int> &arr){
                 }
                 k++;
             }
-            rightRotate(arr, outOfPlace, nextElement);
+            if(k >= arr.size()) break;
+            else rightRotate(arr, outOfPlace, nextElement);
             
         }
     }
