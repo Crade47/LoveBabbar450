@@ -8,7 +8,7 @@ public:
 
 int main(){
     
-    int array[] = {1,5,7,5,1};
+    int array[] = {1,5,7,1};
     int size = sizeof(array)/sizeof(array[0]);
     int key = 6;
     int ans;
@@ -22,30 +22,23 @@ int main(){
 }
 
 
-int Solution :: getPairsCount(int arr[], int n, int k) { 
-        //k is the key sum 
-        //n is the size of the array
-        int count = 0;
-        unordered_map<int, int>  occurences;
-//adding all elements and their count in the array
+int Solution :: getPairsCount(int arr[], int n, int k) {  //O(n) time and O(n) space
+        //k is the sum
+        //n is the size
+        unordered_map<int,int> occurrence; //unordered map gives a O(1) time complexity while looking up elements
+
+        int count = 0; // counter for pairs
+        int value = 0; // a + value = sum therefore value = sum - a where a is the element in the array 
+
         for (int i = 0; i < n; i++)
         {
-            occurences[arr[i]]++;
-        }
-
-
-        
-        for (int i = 0; i < n; i++)
-        {
-            if(occurences.find(k - arr[i]) != occurences.end())
+            value = k - arr[i];
+            if(occurrence.find(value) != occurrence.end()) //Finding if the difference of the value exists in the map
             {
-                count += occurences[k -arr[i]];
+                count += occurrence[value];
             }
-            
-            if (k - arr[i] == arr[i])
-                count--;
+            occurrence[arr[i]]++;
         }
-
-        return count / 2;
+        return count;
         
 }
