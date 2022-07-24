@@ -59,7 +59,7 @@ int candidateFinder(int a[], int size){
     return a[maj_index];
 }
 
-int Solution :: majorityElementHelper(int a[], int size){
+int Solution :: majorityElementHelper(int a[], int size){ //O(n) O(1) Moore's Vote algorithm
 
     int cand = candidateFinder(a, size);
     int count = 0;
