@@ -33,8 +33,7 @@ return 0;
 int candidateFinder(int a[], int size){
 
     int maj_element_count = 1, maj_index = 0;
-    double number = (double)size/2;
-    int NbyTwo = ceil(number);
+
 // Loop through each element and maintains a count of majority element, and a majority index, maj_index
     for (int i = 1; i < size; i++)
     {
