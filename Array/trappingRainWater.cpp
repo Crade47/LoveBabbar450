@@ -31,7 +31,7 @@ int main(){
     
     return 0;
 }
-
+/*
 //O(n) and O(n) space and time complexity
 long long Solution :: trappingWater(int arr[], int n){
     long long leftArr[n];
@@ -62,4 +62,49 @@ long long Solution :: trappingWater(int arr[], int n){
     
     return ans;
     
+}
+*/
+
+//O(n) time and O(1) space complexity
+
+long long Solution :: trappingWater(int arr[], int n){
+    long long rightPointer = n - 1;
+    long long leftPointer = 0;
+    long long ans = 0, maxRight = arr[n - 1], maxLeft = arr[0];
+    
+    while(leftPointer <= rightPointer) //left < right && right > left
+    {
+        if(arr[leftPointer] < arr[rightPointer])
+        {
+            if (arr[leftPointer] > maxLeft)
+            {
+                maxLeft = arr[leftPointer];
+                leftPointer++;
+            }
+
+            else
+            {
+                ans += maxLeft - arr[leftPointer];
+                leftPointer++;
+            }
+            
+        }
+
+        else
+        {
+            if (arr[rightPointer] > maxRight)
+            {
+                maxRight = arr[rightPointer];
+                rightPointer--;
+            }
+
+            else
+            {
+                ans += maxRight - arr[rightPointer];
+                rightPointer--;
+            }
+            
+        }
+    }
+    return ans;
 }
