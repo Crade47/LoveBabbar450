@@ -6,6 +6,8 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int targetRow = 0;
         int oColumn = matrix[0].size();
+
+         
         for (int i = 0; i < matrix.size(); i++)
         {
             if (matrix[i][0] == target || matrix[i][oColumn - 1] == target)
@@ -19,14 +21,32 @@ public:
             }   
         }
         
-        for (int i = 0; i < oColumn; i++)
+
+
+
+        int start = 0, end = oColumn - 1;
+        int mid = (start + end) / 2;
+
+        while (start<=end)
         {
-            if (matrix[targetRow][i] == target)
+            if (matrix[targetRow][mid] == target)
             {
                 return 1;
             }
-            
+
+            if (target > matrix[targetRow][mid])
+            {
+                start = mid + 1;
+            }
+             
+            else
+            {
+                end = mid - 1;
+            }
+            mid = (start + end) / 2;
+                
         }
+        
         
         return 0;
         
